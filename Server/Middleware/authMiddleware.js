@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = function (req, res, next) {
+// Define the main middleware
+const authMiddleware = (req, res, next) => {
   const token = req.header("Authorization")?.split(" ")[1];
 
   if (!token) {
@@ -15,3 +16,9 @@ module.exports = function (req, res, next) {
     res.status(401).json({ message: "Token is not valid" });
   }
 };
+
+// Define verifyToken (even if it's the same logic for now, or a variation)
+const verifyToken = authMiddleware; 
+
+// Export them as an object
+module.exports = { authMiddleware, verifyToken };
