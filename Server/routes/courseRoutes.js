@@ -15,8 +15,7 @@ const {
   updatePractice,
 } = require("../Controllers/courseController");
 
-const authMiddleware = require("../middleware/authMiddleware");
-const verifyToken  = require("../middleware/authMiddleware");
+const { authMiddleware, verifyToken } = require("../Middleware/authMiddleware");
 
 router.post("/create", authMiddleware, createCourse);
 router.get("/", authMiddleware, getMyCourses);

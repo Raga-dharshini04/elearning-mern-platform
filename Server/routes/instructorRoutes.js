@@ -10,7 +10,7 @@ const {
   getCourseGradebook
 } = require("../Controllers/instructorController");
 
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../Middleware/authMiddleware");
 
 router.post("/add-student", authMiddleware, addStudent);
 router.get("/students", authMiddleware, getMyStudents);
