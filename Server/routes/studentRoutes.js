@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { getMyEnrolledCourses, getStudentStats } = require("../Controllers/studentController");
 const { submitTask, getCourseSubmissions } = require("../Controllers/submissionController");
-const authMiddleware = require("../Middleware/authMiddleware"); // Import your middleware
+const { authMiddleware } = require("../Middleware/authMiddleware"); // Import your middleware
 
 
 // Added authMiddleware here
