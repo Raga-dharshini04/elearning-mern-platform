@@ -6,7 +6,6 @@ import ProtectedRoute from "../Components/ProtectedRoute";
 import AdminHome from "../Pages/AdminDashboard/AdminHome";
 import Instructors from "../Pages/AdminDashboard/Instructors";
 import Reports from "../Pages/AdminDashboard/Reports";
-
 import AdminSettings from "../Pages/AdminDashboard/AdminSettings";
 import InstructorHome from "../Pages/Instructor/InstructorHome";
 import MyStudents from "../Pages/Instructor/MyStudents";

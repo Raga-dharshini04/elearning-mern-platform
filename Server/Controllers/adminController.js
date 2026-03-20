@@ -2,19 +2,15 @@ const User = require("../Models/User");
 const bcrypt = require("bcryptjs");
 const Course = require("../Models/Course");
 
-// 🔹 Add Instructor
 exports.addInstructor = async (req, res) => {
   try {
     const { name, email, password, dob, gender } = req.body;
-
     const existing = await User.findOne({ email });
     if (existing) {
       return res.status(400).json({ message: "Instructor already exists" });
     }
-
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
     const instructor = await User.create({
       name,
       email,
@@ -23,24 +19,19 @@ exports.addInstructor = async (req, res) => {
       dob,
       gender,
     });
-
     res.status(201).json({
       message: "Instructor added successfully",
       instructor,
     });
-
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// 🔹 Get All Instructors
 exports.getAllInstructors = async (req, res) => {
   try {
     const instructors = await User.find({ role: "instructor" }).select("-password");
-
     res.status(200).json(instructors);
-
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -57,7 +48,6 @@ exports.getStudentCount = async (req, res) => {
 
 exports.getCourseCount = async (req, res) => {
   try {
-    // This assumes you have a Course model imported above
     const count = await Course.countDocuments();
     res.status(200).json({ count });
   } catch (error) {
@@ -69,7 +59,7 @@ exports.getRecentStudents = async (req, res) => {
   try {
     const students = await User.find({ role: "student" })
       .select("name email createdAt")
-      .sort({ createdAt: -1 }) // Newest first
+      .sort({ createdAt: -1 }) 
       .limit(5);
     res.status(200).json(students);
   } catch (error) {
@@ -85,4 +75,3 @@ exports.deleteInstructor = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
